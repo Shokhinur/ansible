@@ -1,0 +1,12 @@
+---
+- name: Ansible | Create file with content
+  hosts: localhost  # Replace with your target hosts if applicable
+  tasks:
+    - name: Create file with content
+      ansible.builtin.copy:
+        dest: "~/ansible/names.txt"
+        content: |
+          Dan
+          Arun
+          Bret
+          Liz
