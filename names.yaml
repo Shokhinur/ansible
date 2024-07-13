@@ -1,6 +1,12 @@
 ---
 - name: Ansible | Create file with content
   hosts: localhost  # Replace with your target hosts if applicable
+  vars:
+    last_names:
+      Dan: "Smith"
+      Arun: "Patel"
+      Bret: "Jones"
+      Elizabeth: "Brown"
   tasks:
     - name: Create file with content
       ansible.builtin.copy:
@@ -10,3 +16,17 @@
           Arun
           Bret
           Liz
+
+    - name: Replace 'Liz' with 'Elizabeth' in the file
+      ansible.builtin.lineinfile:
+        path: "~/ansible/names.txt"
+        regexp: '^Liz$'
+        line: 'Elizabeth'
+
+    - name: Append last names to names in the file
+      ansible.builtin.lineinfile:
+        path: "~/ansible/names.txt"
+        regexp: "^{{ item.key }}$"
+        line: "{{ item.key }} {{ item.value }}"
+      loop: "{{ last_names | dict2items }}"
+

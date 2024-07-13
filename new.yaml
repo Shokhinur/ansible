@@ -129,7 +129,7 @@
 
 - name: Install and configure web servers, SQL, Node.js packages
   hosts: amazon-linux
-  remote_user: ubuntu
+  remote_user: ec2-user
   become: yes
   tasks:
     - name: Update apt package index
