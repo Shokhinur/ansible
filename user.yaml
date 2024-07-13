@@ -25,8 +25,6 @@
         state: present
 
 
-
-
 - name: Install and configure Nginx web server on Ubuntu
   hosts: ubuntu
   remote_user: ec2-user
